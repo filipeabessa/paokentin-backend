@@ -1,5 +1,6 @@
 package com.filipeabessa.paokentin.breadtype;
 
+import com.filipeabessa.paokentin.common.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,12 +23,15 @@ public class BreadTypeService {
 
     public void delete(Long id) {
         if (!breadTypeRepository.existsById(id)) {
-//            exceção
+            throw new NotFoundException("Bread type with id" + id + "not found");
         }
         breadTypeRepository.deleteById(id);
     }
 
-    public BreadTypeEntity findById(Long id) {
+    public BreadTypeEntity findById(Long id) throws NotFoundException {
+        if (!breadTypeRepository.existsById(id)) {
+            throw new NotFoundException("Bread type with id" + id + "not found");
+        }
         return breadTypeRepository.findById(id).orElse(null);
     }
 
