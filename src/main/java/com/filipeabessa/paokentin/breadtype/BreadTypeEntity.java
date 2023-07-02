@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import static com.filipeabessa.paokentin.utils.Utils.generateRandomHexColor;
+import static com.filipeabessa.paokentin.common.utils.Utils.generateRandomHexColor;
 @Table(name = "bread_type")
 @Entity
 public class BreadTypeEntity {
