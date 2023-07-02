@@ -1,7 +1,8 @@
-package com.filipeabessa.paokentin.entities;
+package com.filipeabessa.paokentin.breadtype;
+
 import static com.filipeabessa.paokentin.utils.Utils.generateRandomHexColor;
 
-public class BreadType {
+public class BreadTypeEntity {
     private int id;
     private String name;
     private String description;
@@ -10,8 +11,7 @@ public class BreadType {
     private double pricePerUnit;
     private boolean glutenFree;
 
-
-    public BreadType(int id, String name, String description, double timeToBake, double pricePerUnit, boolean glutenFree) {
+    public BreadTypeEntity(int id, String name, String description, double timeToBake, double pricePerUnit, boolean glutenFree) {
         this.id = id;
         this.name = name;
         this.timeToBake = timeToBake;
