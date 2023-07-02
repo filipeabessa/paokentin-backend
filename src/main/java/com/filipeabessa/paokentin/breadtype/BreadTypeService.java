@@ -21,6 +21,9 @@ public class BreadTypeService {
     }
 
     public void delete(Long id) {
+        if (!breadTypeRepository.existsById(id)) {
+//            exceção
+        }
         breadTypeRepository.deleteById(id);
     }
 

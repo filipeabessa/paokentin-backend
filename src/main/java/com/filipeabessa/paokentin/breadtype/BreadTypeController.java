@@ -5,10 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public class BreadTypeController {
     }
 
     @GetMapping("/{breadTypeId}")
-    public ResponseEntity<BreadTypeEntity> read(@RequestParam Long breadTypeId) {
+    public ResponseEntity<BreadTypeEntity> read(@PathVariable long breadTypeId) {
         try {
             return ResponseEntity.ok(breadTypeService.findById(breadTypeId));
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class BreadTypeController {
     }
 
     @DeleteMapping("/{breadTypeId}")
-    public ResponseEntity<?> delete(@RequestParam Long breadTypeId) {
+    public ResponseEntity<Void> delete(@PathVariable Long breadTypeId) {
         try {
             breadTypeService.delete(breadTypeId);
             return new ResponseEntity<>(HttpStatus.OK);
