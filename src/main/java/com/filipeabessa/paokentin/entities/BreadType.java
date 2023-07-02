@@ -1,5 +1,5 @@
-package entities;
-import static utils.Utils.generateRandomHexColor;
+package com.filipeabessa.paokentin.entities;
+import static com.filipeabessa.paokentin.utils.Utils.generateRandomHexColor;
 
 public class BreadType {
     private int id;

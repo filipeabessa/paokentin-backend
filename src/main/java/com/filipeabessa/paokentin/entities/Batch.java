@@ -1,6 +1,4 @@
-package entities;
-
-import java.util.Map;
+package com.filipeabessa.paokentin.entities;
 
 public class Batch {
   private int id;

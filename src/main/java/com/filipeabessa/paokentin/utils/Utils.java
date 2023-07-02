@@ -1,4 +1,4 @@
-package utils;
+package com.filipeabessa.paokentin.utils;
 
 import java.util.Random;
 
