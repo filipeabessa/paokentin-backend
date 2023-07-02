@@ -1,16 +1,33 @@
 package com.filipeabessa.paokentin.breadtype;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import static com.filipeabessa.paokentin.utils.Utils.generateRandomHexColor;
-
+@Table(name = "bread_type")
+@Entity
 public class BreadTypeEntity {
+    @Id
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "description")
     private String description;
-    private final String relatedColor;
+    @Column(name = "related_color")
+    private final String relatedColor = generateRandomHexColor();
+    @Column(name = "time_to_bake")
     private double timeToBake;
+    @Column(name = "price_per_unit")
     private double pricePerUnit;
+    @Column(name = "gluten_free")
     private boolean glutenFree;
+    public BreadTypeEntity() {
 
+    }
     public BreadTypeEntity(int id, String name, String description, double timeToBake, double pricePerUnit, boolean glutenFree) {
         this.id = id;
         this.name = name;
@@ -18,9 +35,8 @@ public class BreadTypeEntity {
         this.pricePerUnit = pricePerUnit;
         this.description = description;
         this.glutenFree = glutenFree;
-
-        this.relatedColor = generateRandomHexColor();
     }
+
     public int getId() {
         return id;
     }
