@@ -14,18 +14,18 @@ import jakarta.persistence.Table;
 public class BatchEntity {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(name = "breads_quantity")
     private int breadsQuantity;
     @ManyToOne
     @JoinColumn(name = "bread_type_id", nullable = false)
     private BreadTypeEntity breadType;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

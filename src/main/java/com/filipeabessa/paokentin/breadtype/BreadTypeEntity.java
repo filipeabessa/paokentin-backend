@@ -12,7 +12,7 @@ import static com.filipeabessa.paokentin.utils.Utils.generateRandomHexColor;
 public class BreadTypeEntity {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "description")
@@ -20,7 +20,7 @@ public class BreadTypeEntity {
     @Column(name = "related_color")
     private final String relatedColor = generateRandomHexColor();
     @Column(name = "time_to_bake")
-    private double timeToBake;
+    private long timeToBake;
     @Column(name = "price_per_unit")
     private double pricePerUnit;
     @Column(name = "gluten_free")
@@ -28,7 +28,7 @@ public class BreadTypeEntity {
     public BreadTypeEntity() {
 
     }
-    public BreadTypeEntity(int id, String name, String description, double timeToBake, double pricePerUnit, boolean glutenFree) {
+    public BreadTypeEntity(int id, String name, String description, long timeToBake, double pricePerUnit, boolean glutenFree) {
         this.id = id;
         this.name = name;
         this.timeToBake = timeToBake;
@@ -37,11 +37,11 @@ public class BreadTypeEntity {
         this.glutenFree = glutenFree;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     public String getName() {
@@ -76,11 +76,11 @@ public class BreadTypeEntity {
         this.glutenFree = glutenFree;
     }
 
-    public double getTimeToBake() {
+    public long getTimeToBake() {
         return timeToBake;
     }
 
-    public void setTimeToBake(double timeToBake) {
+    public void setTimeToBake(long timeToBake) {
         this.timeToBake = timeToBake;
     }
     public String getRelatedColor() {
