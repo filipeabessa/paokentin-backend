@@ -2,6 +2,7 @@ package com.filipeabessa.paokentin.batch;
 
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ public class BatchService {
     }
 
     public BatchEntity create(BatchEntity batchEntity) {
-        return batchRepository.save(batchEntity);
+        return batchRepository.create(batchEntity);
     }
 
     public BatchEntity update(BatchEntity batchEntity) {
@@ -22,7 +23,7 @@ public class BatchService {
 
 
         if (batch.isPresent()) {
-            return batchRepository.save(batchEntity);
+            return batchRepository.update(batchEntity);
         }
         return null;
     }

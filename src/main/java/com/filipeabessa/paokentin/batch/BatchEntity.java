@@ -1,26 +1,14 @@
 package com.filipeabessa.paokentin.batch;
 
 import com.filipeabessa.paokentin.breadtype.BreadTypeEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
-@Table(name = "batch")
-@Entity
+import java.util.Date;
+
 public class BatchEntity {
-    @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private long id;
-    @Column(name = "breads_quantity")
     private int breadsQuantity;
-    @ManyToOne
-    @JoinColumn(name = "bread_type_id", nullable = false)
     private BreadTypeEntity breadType;
-
+    private Date createdAt;
     public long getId() {
         return id;
     }
@@ -43,5 +31,13 @@ public class BatchEntity {
 
     public void setBreadType(BreadTypeEntity breadType) {
         this.breadType = breadType;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
