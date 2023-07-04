@@ -4,10 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public interface GenericRepository<Class, Key> {
-    Class create(Class entity) throws SQLException;
-    Class update(Class entity);
-    void deleteById(Key id);
-    List<Class> findAll();
-    Optional<Class> findById(Key id);
+public interface GenericRepository<T, K> {
+    T create(T entity) throws SQLException;
+    T update(T entity);
+    void deleteById(K id);
+    List<T> findAll();
+    Optional<T> findById(K id);
 }
