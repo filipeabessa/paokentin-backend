@@ -10,4 +10,5 @@ public interface GenericRepository<T, K> {
     void deleteById(K id);
     List<T> findAll();
     Optional<T> findById(K id);
+    boolean existsById(K id);
 }

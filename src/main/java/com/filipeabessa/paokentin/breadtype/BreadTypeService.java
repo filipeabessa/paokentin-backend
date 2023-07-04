@@ -14,22 +14,22 @@ public class BreadTypeService {
     }
 
     public BreadTypeEntity create(BreadTypeEntity breadTypeEntity) {
-        return breadTypeRepository.save(breadTypeEntity);
+        return breadTypeRepository.create(breadTypeEntity);
     }
 
     public BreadTypeEntity update(BreadTypeEntity breadTypeEntity) {
-        return breadTypeRepository.save(breadTypeEntity);
+        return breadTypeRepository.update(breadTypeEntity);
     }
 
     public void delete(Long id) {
-        if (!breadTypeRepository.existsById(id)) {
+        if (breadTypeRepository.existsById(id)) {
             throw new NotFoundException("Bread type with id" + id + "not found");
         }
         breadTypeRepository.deleteById(id);
     }
 
     public BreadTypeEntity findById(Long id) throws NotFoundException {
-        if (!breadTypeRepository.existsById(id)) {
+        if (breadTypeRepository.existsById(id)) {
             throw new NotFoundException("Bread type with id" + id + "not found");
         }
         return breadTypeRepository.findById(id).orElse(null);

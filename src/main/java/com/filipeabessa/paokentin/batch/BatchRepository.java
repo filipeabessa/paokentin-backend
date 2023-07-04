@@ -130,4 +130,18 @@ public class BatchRepository implements GenericRepository<BatchEntity, Long> {
         breadType.setPricePerUnit(result.getDouble("price_per_unit"));
         batch.setBreadType(breadType);
     }
+
+    public boolean existsById(Long id) {
+        String sql = "SELECT * FROM batch WHERE id = ?";
+        try (PreparedStatement preparedStatement = getCurrentConnection().prepareStatement(sql)) {
+            preparedStatement.setLong(1, id);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            return !result.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 }
