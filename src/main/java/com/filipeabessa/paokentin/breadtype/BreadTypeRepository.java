@@ -3,7 +3,6 @@ package com.filipeabessa.paokentin.breadtype;
 import com.filipeabessa.paokentin.common.interfaces.GenericRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.xml.transform.Result;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,12 +32,13 @@ public class BreadTypeRepository implements GenericRepository<BreadTypeEntity, L
     }
     @Override
     public BreadTypeEntity create(BreadTypeEntity breadType) {
-        String sql = "INSERT INTO bread_type (name, description, price) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO bread_type (name, description, price_per_unit, related_color) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = getCurrentConnection().prepareStatement(sql)) {
             preparedStatement.setString(1, breadType.getName());
             preparedStatement.setString(2, breadType.getDescription());
             preparedStatement.setDouble(3, breadType.getPricePerUnit());
+            preparedStatement.setString(4, breadType.getRelatedColor());
             preparedStatement.execute();
             return breadType;
         } catch (SQLException e) {
@@ -88,7 +88,8 @@ public class BreadTypeRepository implements GenericRepository<BreadTypeEntity, L
                 breadType.setId(result.getLong("id"));
                 breadType.setName(result.getString("name"));
                 breadType.setDescription(result.getString("description"));
-                breadType.setPricePerUnit(result.getDouble("price"));
+                breadType.setPricePerUnit(result.getDouble("price_per_unit"));
+                breadType.setRelatedColor(result.getString("related_color"));
                 breadTypes.add(breadType);
             }
         } catch (SQLException e) {
@@ -120,7 +121,8 @@ public class BreadTypeRepository implements GenericRepository<BreadTypeEntity, L
         return Optional.empty();
     }
 
-    public boolean existsById(long id) {
+    @Override
+    public boolean existsById(Long id) {
         String sql = "SELECT * FROM bread_type WHERE id = ?";
         try (PreparedStatement preparedStatement = getCurrentConnection().prepareStatement(sql)) {
             preparedStatement.setLong(1, id);

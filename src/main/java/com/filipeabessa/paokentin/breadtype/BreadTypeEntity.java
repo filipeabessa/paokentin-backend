@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import static com.filipeabessa.paokentin.common.utils.Utils.generateRandomHexColor;
 @Table(name = "bread_type")
 @Entity
 public class BreadTypeEntity {
@@ -18,7 +17,7 @@ public class BreadTypeEntity {
     @Column(name = "description")
     private String description;
     @Column(name = "related_color")
-    private final String relatedColor = generateRandomHexColor();
+    private String relatedColor;
     @Column(name = "time_to_bake")
     private long timeToBake;
     @Column(name = "price_per_unit")
@@ -83,7 +82,11 @@ public class BreadTypeEntity {
     public void setTimeToBake(long timeToBake) {
         this.timeToBake = timeToBake;
     }
+
     public String getRelatedColor() {
         return relatedColor;
+    }
+    public void setRelatedColor(String relatedColor) {
+        this.relatedColor = relatedColor;
     }
 }

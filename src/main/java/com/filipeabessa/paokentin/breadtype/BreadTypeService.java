@@ -2,6 +2,7 @@ package com.filipeabessa.paokentin.breadtype;
 
 import com.filipeabessa.paokentin.common.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
+import static com.filipeabessa.paokentin.common.utils.Utils.generateRandomHexColor;
 
 import java.util.List;
 
@@ -14,6 +15,9 @@ public class BreadTypeService {
     }
 
     public BreadTypeEntity create(BreadTypeEntity breadTypeEntity) {
+        breadTypeEntity.setRelatedColor(
+                generateRandomHexColor()
+        );
         return breadTypeRepository.create(breadTypeEntity);
     }
 
