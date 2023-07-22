@@ -1,5 +1,7 @@
 package com.filipeabessa.paokentin.batch;
 
+import com.filipeabessa.paokentin.batch.dtos.CreateBatchDto;
+import com.filipeabessa.paokentin.batch.dtos.GetBatchDto;
 import com.filipeabessa.paokentin.common.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +28,12 @@ public class BatchController {
     }
 
     @PostMapping
-    public ResponseEntity<BatchEntity> create(@RequestBody BatchEntity batchEntity) {
-        return ResponseEntity.ok(batchService.create(batchEntity));
+    public ResponseEntity<BatchEntity> create(@RequestBody CreateBatchDto createBatchDto) {
+        return ResponseEntity.ok(batchService.create(createBatchDto));
     }
 
     @GetMapping
-    public ResponseEntity<List<BatchEntity>> readAll() {
+    public ResponseEntity<List<GetBatchDto>> readAll() {
         return ResponseEntity.ok(batchService.findAll());
     }
 

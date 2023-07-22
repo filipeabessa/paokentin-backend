@@ -1,5 +1,6 @@
 package com.filipeabessa.paokentin.common.utils;
 
+import java.util.Date;
 import java.util.Random;
 
 public class Utils {
@@ -14,5 +15,11 @@ public class Utils {
         String hex = String.format("#%02x%02x%02x", red, green, blue);
 
         return hex;
+    }
+
+    public static Date getDateAfterMinutes(Date initialDate, long minutes) {
+        Date date = new Date();
+        date.setTime(initialDate.getTime() + minutes * 60 * 1000);
+        return date;
     }
 }

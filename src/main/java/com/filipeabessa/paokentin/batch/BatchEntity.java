@@ -1,14 +1,14 @@
 package com.filipeabessa.paokentin.batch;
 
-import com.filipeabessa.paokentin.breadtype.BreadTypeEntity;
-
 import java.util.Date;
 
 public class BatchEntity {
     private long id;
     private int breadsQuantity;
-    private BreadTypeEntity breadType;
+    private Long breadTypeId;
     private Date createdAt;
+
+    private Date finishAt;
     public long getId() {
         return id;
     }
@@ -25,12 +25,12 @@ public class BatchEntity {
         this.breadsQuantity = breadsQuantity;
     }
 
-    public BreadTypeEntity getBreadType() {
-        return breadType;
+    public Long getBreadTypeId() {
+        return breadTypeId;
     }
 
-    public void setBreadType(BreadTypeEntity breadType) {
-        this.breadType = breadType;
+    public void setBreadTypeId(Long breadTypeId) {
+        this.breadTypeId = breadTypeId;
     }
 
     public Date getCreatedAt() {
@@ -39,5 +39,13 @@ public class BatchEntity {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Date getFinishAt() {
+        return finishAt;
+    }
+
+    public void setFinishAt(Date finishAt) {
+        this.finishAt = finishAt;
     }
 }

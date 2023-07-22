@@ -15,12 +15,14 @@ import static com.filipeabessa.paokentin.common.ConnectionManager.getCurrentConn
 @Repository
 public class BreadTypeRepository implements GenericRepository<BreadTypeEntity, Long> {
 
-    BreadTypeRepository() {
+    public BreadTypeRepository() {
         String sql = "CREATE TABLE IF NOT EXISTS bread_type (" +
                 "id INT AUTO_INCREMENT PRIMARY KEY," +
                 "name VARCHAR(255) NOT NULL," +
                 "description VARCHAR(255) NOT NULL," +
-                "price DECIMAL(10,2) NOT NULL," +
+                "time_to_bake BIGINT NOT NULL," +
+                "gluten_free BOOLEAN NOT NULL," +
+                "price_per_unit DECIMAL(10,2) NOT NULL," +
                 "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
                 "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" +
                 ");";
@@ -32,13 +34,15 @@ public class BreadTypeRepository implements GenericRepository<BreadTypeEntity, L
     }
     @Override
     public BreadTypeEntity create(BreadTypeEntity breadType) {
-        String sql = "INSERT INTO bread_type (name, description, price_per_unit, related_color) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO bread_type (name, description, price_per_unit, related_color, time_to_bake, gluten_free) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = getCurrentConnection().prepareStatement(sql)) {
             preparedStatement.setString(1, breadType.getName());
             preparedStatement.setString(2, breadType.getDescription());
             preparedStatement.setDouble(3, breadType.getPricePerUnit());
             preparedStatement.setString(4, breadType.getRelatedColor());
+            preparedStatement.setLong(5, breadType.getTimeToBake());
+            preparedStatement.setBoolean(6, breadType.isGlutenFree());
             preparedStatement.execute();
             return breadType;
         } catch (SQLException e) {
@@ -49,7 +53,7 @@ public class BreadTypeRepository implements GenericRepository<BreadTypeEntity, L
 
     @Override
     public BreadTypeEntity update(BreadTypeEntity breadType) {
-        String sql = "UPDATE bread_type SET name = ?, description = ?, price = ? WHERE id = ?";
+        String sql = "UPDATE bread_type SET name = ?, description = ?, price_per_unit = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = getCurrentConnection().prepareStatement(sql)) {
             preparedStatement.setString(1, breadType.getName());
@@ -90,6 +94,8 @@ public class BreadTypeRepository implements GenericRepository<BreadTypeEntity, L
                 breadType.setDescription(result.getString("description"));
                 breadType.setPricePerUnit(result.getDouble("price_per_unit"));
                 breadType.setRelatedColor(result.getString("related_color"));
+                breadType.setTimeToBake(result.getLong("time_to_bake"));
+                breadType.setGlutenFree(result.getBoolean("gluten_free"));
                 breadTypes.add(breadType);
             }
         } catch (SQLException e) {
@@ -111,7 +117,8 @@ public class BreadTypeRepository implements GenericRepository<BreadTypeEntity, L
                 breadType.setId(result.getLong("id"));
                 breadType.setName(result.getString("name"));
                 breadType.setDescription(result.getString("description"));
-                breadType.setPricePerUnit(result.getDouble("price"));
+                breadType.setPricePerUnit(result.getDouble("price_per_unit"));
+                breadType.setRelatedColor(result.getString("related_color"));
                 return Optional.of(breadType);
             }
 
